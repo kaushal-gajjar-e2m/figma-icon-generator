@@ -1,0 +1,30 @@
+{
+  "name": "figma-icon-generator",
+  "version": "1.0.0",
+  "description": "Generate consistent icons from a Figma template and SVG library",
+  "private": true,
+  "scripts": {
+    "build": "npm run build:ui && npm run build:plugin",
+    "build:ui": "vite build --config vite.config.ts",
+    "build:plugin": "esbuild src/plugin/code.ts --bundle --outfile=dist/code.js --target=es2017 --format=iife",
+    "dev": "concurrently -n ui,plugin -c cyan,magenta \"npm run dev:ui\" \"npm run dev:plugin\"",
+    "dev:ui": "vite build --config vite.config.ts --watch",
+    "dev:plugin": "esbuild src/plugin/code.ts --bundle --outfile=dist/code.js --target=es2017 --format=iife --watch",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@figma/plugin-typings": "^1.109.0",
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
+    "@vitejs/plugin-react": "^4.3.4",
+    "concurrently": "^9.1.2",
+    "esbuild": "^0.24.2",
+    "typescript": "^5.7.3",
+    "vite": "^6.0.7",
+    "vite-plugin-singlefile": "^2.1.0"
+  }
+}
